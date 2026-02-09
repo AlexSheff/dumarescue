@@ -1,27 +1,23 @@
 {
   "name": "Dumaguete Emergency Contacts",
-  "short_name": "DGT Emergency",
+  "short_name": "DumaRescue",
   "description": "Quick access to emergency services in Dumaguete City, Philippines",
-  "start_url": "/dumarescue/",
+  "start_url": "/dumarescue/index.html",
   "scope": "/dumarescue/",
   "display": "standalone",
-  "background_color": "#667eea",
+  "background_color": "#111111",
   "theme_color": "#dc2626",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%23dc2626' width='192' height='192' rx='40'/%3E%3Ctext y='145' font-size='120' text-anchor='middle' x='96' fill='white'%3E🚨%3C/text%3E%3C/svg%3E",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%23dc2626' width='512' height='512' rx='100'/%3E%3Ctext y='390' font-size='320' text-anchor='middle' x='256' fill='white'%3E🚨%3C/text%3E%3C/svg%3E",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
-  ],
-  "categories": ["utilities", "health", "safety"],
-  "screenshots": []
+  ]
 }
