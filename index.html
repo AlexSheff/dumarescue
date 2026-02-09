@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Emergency contacts for Dumaguete City, Philippines">
+    <meta name="theme-color" content="#dc2626">
+    <title>Dumaguete Emergency Contacts</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23dc2626' width='100' height='100'/%3E%3Ctext y='75' font-size='70' fill='white' font-family='Arial' text-anchor='middle' x='50'%3E🚨%3C/text%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #dc2626;
+            font-size: 24px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .emergency-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+
+        .emergency-card:active {
+            transform: scale(0.98);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            font-size: 28px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fee;
+            border-radius: 12px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .phone-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .phone-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #dc2626;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .phone-btn:hover {
+            background: #b91c1c;
+        }
+
+        .phone-btn:active {
+            background: #991b1b;
+        }
+
+        .phone-number {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .call-icon {
+            font-size: 20px;
+        }
+
+        .share-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #10b981;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            cursor: pointer;
+            transition: transform 0.2s;
+            z-index: 1000;
+        }
+
+        .share-btn:active {
+            transform: scale(0.9);
+        }
+
+        .install-prompt {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .install-prompt.show {
+            display: flex;
+        }
+
+        .install-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #1e40af;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+                padding-bottom: 80px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .phone-btn {
+                font-size: 14px;
+                padding: 10px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span>🚨</span> Emergency Contacts</h1>
+            <div class="subtitle">Dumaguete City, Philippines</div>
+        </header>
+
+        <div class="install-prompt" id="installPrompt">
+            <span style="font-size: 24px;">📱</span>
+            <div style="flex: 1; font-size: 14px;">
+                <strong>Install this app</strong> for quick offline access
+            </div>
+            <button class="install-btn" id="installBtn">Install</button>
+        </div>
+
+        <!-- Police -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">👮</div>
+                <div class="card-title">Police (PNP)</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09171203915" class="phone-btn">
+                    <span class="phone-number">0917 120 3915</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09985987506" class="phone-btn">
+                    <span class="phone-number">0998 598 7506</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Dr. V. Locsin Street
+            </div>
+        </div>
+
+        <!-- Fire -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🚒</div>
+                <div class="card-title">Fire Protection (BFP)</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09771981900" class="phone-btn">
+                    <span class="phone-number">0977 198 1900</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09611998777" class="phone-btn">
+                    <span class="phone-number">0961 199 8777</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0354210224" class="phone-btn">
+                    <span class="phone-number">(035) 421-0224</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0352253445" class="phone-btn">
+                    <span class="phone-number">(035) 225-3445</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Near City Hall
+            </div>
+        </div>
+
+        <!-- City Health Office -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🏥</div>
+                <div class="card-title">City Health Office (CHO)</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:0999995826" class="phone-btn">
+                    <span class="phone-number">0999 995 8276 (Emergency)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09367197211" class="phone-btn">
+                    <span class="phone-number">0936 719 7211 (Emergency)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0352252535" class="phone-btn">
+                    <span class="phone-number">(035) 225-2535</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Colon Street
+            </div>
+        </div>
+
+        <!-- ONE Rescue EMS -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🚑</div>
+                <div class="card-title">ONE Rescue EMS</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09285139110" class="phone-btn">
+                    <span class="phone-number">0928 513 9110</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09228808897" class="phone-btn">
+                    <span class="phone-number">0922 880 8897</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Bacong-Valencia Rd • 24/7 Volunteer EMS
+            </div>
+        </div>
+
+        <!-- DRRM & Red Cross -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🆘</div>
+                <div class="card-title">DRRM & Red Cross</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09367954163" class="phone-btn">
+                    <span class="phone-number">0936 795 4163 (DRRM)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0355222815" class="phone-btn">
+                    <span class="phone-number">(035) 522-2815 (Red Cross)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Coast Guard -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">⚓</div>
+                <div class="card-title">Coast Guard (PCG)</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09677667503" class="phone-btn">
+                    <span class="phone-number">0967 766 7503 (Dumaguete)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09695275768" class="phone-btn">
+                    <span class="phone-number">0969 527 5768 (Negros Oriental)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Traffic Management -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🚦</div>
+                <div class="card-title">Traffic Management (TMO)</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:0352251662" class="phone-btn">
+                    <span class="phone-number">(035) 225-1662</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Kiwanis Building
+            </div>
+        </div>
+
+        <!-- Silliman Medical Center -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🏥</div>
+                <div class="card-title">Silliman Medical Center</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09663481252" class="phone-btn">
+                    <span class="phone-number">0966 348 1252</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09065030090" class="phone-btn">
+                    <span class="phone-number">0906 503 0090</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Aldecoa Drive • 140-bed tertiary care
+            </div>
+        </div>
+
+        <!-- Holy Child Hospital -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🏥</div>
+                <div class="card-title">Holy Child Hospital</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:0352250510" class="phone-btn">
+                    <span class="phone-number">(035) 225 0510</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0352261113" class="phone-btn">
+                    <span class="phone-number">(035) 226 1113</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Bp. E. Surban Street • 150 beds
+            </div>
+        </div>
+
+        <!-- ACE Doctors Hospital -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🏥</div>
+                <div class="card-title">ACE Doctors Hospital</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09231166478" class="phone-btn">
+                    <span class="phone-number">0923 116 6478 (ER)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09311514292" class="phone-btn">
+                    <span class="phone-number">0931 151 4292</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09231166464" class="phone-btn">
+                    <span class="phone-number">0923 116 6464</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0355235957" class="phone-btn">
+                    <span class="phone-number">(035) 523-5957</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0354212119" class="phone-btn">
+                    <span class="phone-number">(035) 421-2119</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09069730687" class="phone-btn">
+                    <span class="phone-number">0906 973 0687</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Cimafranca Street, Daro • Level II
+            </div>
+        </div>
+
+        <!-- NOPH -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🏥</div>
+                <div class="card-title">Negros Oriental Provincial Hospital</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:0352259286" class="phone-btn">
+                    <span class="phone-number">(035) 225-9286</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0352252614" class="phone-btn">
+                    <span class="phone-number">(035) 225 2614</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:63352250950" class="phone-btn">
+                    <span class="phone-number">(6335) 225-0950</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:63352250949" class="phone-btn">
+                    <span class="phone-number">(6335) 225-0949</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Central Location • 250 beds referral
+            </div>
+        </div>
+
+        <!-- Negros Polymedic Hospital -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">🏥</div>
+                <div class="card-title">Negros Polymedic Hospital</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:09088140431" class="phone-btn">
+                    <span class="phone-number">0908 814 0431 (Emergency)</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09088140435" class="phone-btn">
+                    <span class="phone-number">0908 814 0435</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0354192112" class="phone-btn">
+                    <span class="phone-number">(035) 419 2112</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+            <div class="note" style="margin-top: 10px;">
+                📍 Sibulan • 100 beds • Opened 2020
+            </div>
+        </div>
+
+        <!-- Philippine Ports Authority -->
+        <div class="emergency-card">
+            <div class="card-header">
+                <div class="icon">⚓</div>
+                <div class="card-title">Philippine Ports Authority</div>
+            </div>
+            <div class="phone-list">
+                <a href="tel:0355272079" class="phone-btn">
+                    <span class="phone-number">(035) 527 2079</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:0354228914" class="phone-btn">
+                    <span class="phone-number">(035) 422 8914</span>
+                    <span class="call-icon">📞</span>
+                </a>
+                <a href="tel:09985864833" class="phone-btn">
+                    <span class="phone-number">0998 586 4833</span>
+                    <span class="call-icon">📞</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="note" style="background: white; padding: 15px; border-radius: 10px; margin-top: 20px;">
+            <strong>📍 Location:</strong> Dumaguete City, Negros Oriental, Philippines<br>
+            <strong>📅 Updated:</strong> 2025
+        </div>
+    </div>
+
+    <button class="share-btn" id="shareBtn" title="Share this app">🔗</button>
+
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(function(registration) {
+                console.log('Service Worker registered:', registration.scope);
+            }).catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+
+        // Install Prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.classList.add('show');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
+                deferredPrompt = null;
+                installPrompt.classList.remove('show');
+            }
+        });
+
+        // Share Button
+        const shareBtn = document.getElementById('shareBtn');
+        shareBtn.addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Dumaguete Emergency Contacts',
+                        text: 'Emergency contact numbers for Dumaguete City, Philippines',
+                        url: window.location.href
+                    });
+                } catch (error) {
+                    console.log('Error sharing:', error);
+                }
+            } else {
+                // Fallback: copy URL
+                navigator.clipboard.writeText(window.location.href);
+                shareBtn.textContent = '✓';
+                setTimeout(() => {
+                    shareBtn.textContent = '🔗';
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
