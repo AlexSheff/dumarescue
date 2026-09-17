@@ -1,10 +1,12 @@
-const CACHE_NAME = 'dumaguete-emergency-v4';
+const CACHE_NAME = 'dumaguete-emergency-v7';
 const urlsToCache = [
-  '/dumarescue/',
-  '/dumarescue/index.html',
-  '/dumarescue/manifest.json',
-  '/dumarescue/icons/icon-192.png',
-  '/dumarescue/icons/icon-512.png'
+  '/',
+  '/index.html',
+  '/barangays.html',
+  '/styles.css',
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 // Install

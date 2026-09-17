@@ -9,184 +9,7 @@
 <title>Dumaguete Emergency Contacts</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23dc2626' width='100' height='100'/%3E%3Ctext y='75' font-size='70' fill='white' font-family='Arial' text-anchor='middle' x='50'%3E🚨%3C/text%3E%3C/svg%3E">
-<style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-body {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-min-height: 100vh;
-padding: 20px;
-padding-bottom: 80px;
-}
-.container {
-max-width: 600px;
-margin: 0 auto;
-}
-header {
-background: white;
-border-radius: 20px;
-padding: 25px;
-margin-bottom: 20px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-text-align: center;
-}
-h1 {
-color: #dc2626;
-font-size: 24px;
-margin-bottom: 5px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-}
-.subtitle {
-color: #666;
-font-size: 14px;
-}
-.emergency-card {
-background: white;
-border-radius: 15px;
-padding: 20px;
-margin-bottom: 15px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-transition: transform 0.2s;
-}
-.emergency-card:active {
-transform: scale(0.98);
-}
-.card-header {
-display: flex;
-align-items: center;
-gap: 12px;
-margin-bottom: 15px;
-}
-.icon {
-font-size: 28px;
-width: 45px;
-height: 45px;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #fee;
-border-radius: 12px;
-}
-.card-title {
-font-size: 18px;
-font-weight: 600;
-color: #1f2937;
-}
-.phone-list {
-display: flex;
-flex-direction: column;
-gap: 8px;
-}
-.phone-btn {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 12px 16px;
-background: #dc2626;
-color: white;
-text-decoration: none;
-border-radius: 10px;
-font-size: 16px;
-font-weight: 500;
-transition: background 0.2s;
-}
-.phone-btn:hover {
-background: #b91c1c;
-}
-.phone-btn:active {
-background: #991b1b;
-}
-.phone-number {
-font-family: 'Courier New', monospace;
-letter-spacing: 0.5px;
-}
-.call-icon {
-font-size: 20px;
-}
-.share-btn {
-position: fixed;
-bottom: 20px;
-right: 20px;
-width: 60px;
-height: 60px;
-background: #10b981;
-border: none;
-border-radius: 50%;
-color: white;
-font-size: 28px;
-box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-cursor: pointer;
-transition: transform 0.2s;
-z-index: 1000;
-}
-.share-btn:active {
-transform: scale(0.9);
-}
-.install-prompt {
-background: #fef3c7;
-border: 2px solid #fbbf24;
-border-radius: 15px;
-padding: 15px;
-margin-bottom: 20px;
-display: none;
-align-items: center;
-gap: 12px;
-}
-.install-prompt.show {
-display: flex;
-}
-.install-btn {
-background: #f59e0b;
-color: white;
-border: none;
-padding: 10px 20px;
-border-radius: 8px;
-font-weight: 600;
-cursor: pointer;
-white-space: nowrap;
-}
-.note {
-background: #eff6ff;
-border-left: 4px solid #3b82f6;
-padding: 12px;
-margin-top: 15px;
-border-radius: 8px;
-font-size: 13px;
-color: #1e40af;
-}
-.section-label {
-color: white;
-font-size: 15px;
-font-weight: 700;
-margin: 25px 0 12px 4px;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-@media (max-width: 480px) {
-body {
-padding: 15px;
-padding-bottom: 80px;
-}
-h1 {
-font-size: 20px;
-}
-.card-title {
-font-size: 16px;
-}
-.phone-btn {
-font-size: 14px;
-padding: 10px 14px;
-}
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
@@ -194,6 +17,11 @@ padding: 10px 14px;
 <h1><span>🚨</span> Emergency Contacts</h1>
 <div class="subtitle">Dumaguete City, Philippines</div>
 </header>
+
+<div class="view-switch">
+<a href="index.html" class="view-btn active">🚨 Emergency &amp; Hospitals</a>
+<a href="barangays.html" class="view-btn">🏘️ Barangay Halls</a>
+</div>
 
 <div class="install-prompt" id="installPrompt">
 <span style="font-size: 24px;">📱</span>
@@ -210,17 +38,24 @@ padding: 10px 14px;
 <div class="card-title">Police (PNP)</div>
 </div>
 <div class="phone-list">
+<a href="tel:09985987506" class="phone-btn">
+<span class="phone-number">0998 598 7506</span>
+<span class="call-icon">📞</span>
+</a>
 <a href="tel:09171203915" class="phone-btn">
 <span class="phone-number">0917 120 3915</span>
 <span class="call-icon">📞</span>
 </a>
-<a href="tel:09985987506" class="phone-btn">
-<span class="phone-number">0998 598 7506</span>
+<a href="tel:09179330022" class="phone-btn unverified">
+<span class="phone-number">0917 933 0022</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
 <div class="note" style="margin-top: 10px;">
 📍 Dr. V. Locsin Street
+</div>
+<div class="verify-note">
+⚠️ 0917 933 0022 (tourism office listing) vs 0917 120 3915 (previous listing) — both kept until confirmed by phone which is current.
 </div>
 </div>
 
@@ -253,6 +88,24 @@ padding: 10px 14px;
 </div>
 </div>
 
+<!-- Highway Patrol Group -->
+<div class="emergency-card">
+<div class="card-header">
+<div class="icon">🛣️</div>
+<div class="card-title">Highway Patrol Group (HPG)</div>
+</div>
+<div class="phone-list">
+<a href="tel:09956628957" class="phone-btn">
+<span class="phone-number">0995 662 8957</span>
+<span class="call-icon">📞</span>
+</a>
+<a href="tel:0354221089" class="phone-btn">
+<span class="phone-number">(035) 422 1089</span>
+<span class="call-icon">📞</span>
+</a>
+</div>
+</div>
+
 <!-- City Health Office -->
 <div class="emergency-card">
 <div class="card-header">
@@ -272,9 +125,16 @@ padding: 10px 14px;
 <span class="phone-number">(035) 225-2535</span>
 <span class="call-icon">📞</span>
 </a>
+<a href="tel:09064803401" class="phone-btn unverified">
+<span class="phone-number">0906 480 3401</span>
+<span class="call-icon">📞</span>
+</a>
 </div>
 <div class="note" style="margin-top: 10px;">
 📍 Colon Street
+</div>
+<div class="verify-note">
+⚠️ 0906 480 3401 is from the tourism office listing and doesn't match the emergency lines above — likely a general office line, not yet confirmed.
 </div>
 </div>
 
@@ -285,6 +145,10 @@ padding: 10px 14px;
 <div class="card-title">ONE Rescue EMS</div>
 </div>
 <div class="phone-list">
+<a href="tel:09055186917" class="phone-btn">
+<span class="phone-number">0905 518 6917</span>
+<span class="call-icon">📞</span>
+</a>
 <a href="tel:09285139110" class="phone-btn">
 <span class="phone-number">0928 513 9110</span>
 <span class="call-icon">📞</span>
@@ -359,17 +223,28 @@ padding: 10px 14px;
 <div class="card-title">Silliman Medical Center</div>
 </div>
 <div class="phone-list">
-<a href="tel:09663481252" class="phone-btn">
+<a href="tel:0354202000" class="phone-btn">
+<span class="phone-number">(035) 420 2000 (Main)</span>
+<span class="call-icon">📞</span>
+</a>
+<a href="tel:09171077415" class="phone-btn">
+<span class="phone-number">0917 107 7415</span>
+<span class="call-icon">📞</span>
+</a>
+<a href="tel:09663481252" class="phone-btn unverified">
 <span class="phone-number">0966 348 1252</span>
 <span class="call-icon">📞</span>
 </a>
-<a href="tel:09065030090" class="phone-btn">
+<a href="tel:09065030090" class="phone-btn unverified">
 <span class="phone-number">0906 503 0090</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
 <div class="note" style="margin-top: 10px;">
 📍 Aldecoa Drive • 140-bed tertiary care
+</div>
+<div class="verify-note">
+⚠️ Tourism office listing (top two) has zero overlap with the previous listing (bottom two, marked unverified) — likely different departments (switchboard/ER vs a direct line), not yet confirmed which is current.
 </div>
 </div>
 
@@ -380,6 +255,10 @@ padding: 10px 14px;
 <div class="card-title">Holy Child Hospital</div>
 </div>
 <div class="phone-list">
+<a href="tel:09672144487" class="phone-btn">
+<span class="phone-number">0967 214 4487</span>
+<span class="call-icon">📞</span>
+</a>
 <a href="tel:0352250510" class="phone-btn">
 <span class="phone-number">(035) 225 0510</span>
 <span class="call-icon">📞</span>
@@ -438,12 +317,20 @@ padding: 10px 14px;
 <div class="card-title">Negros Oriental Provincial Hospital</div>
 </div>
 <div class="phone-list">
-<a href="tel:0352259286" class="phone-btn">
-<span class="phone-number">(035) 225-9286</span>
+<a href="tel:09659076449" class="phone-btn">
+<span class="phone-number">0965 907 6449</span>
 <span class="call-icon">📞</span>
 </a>
 <a href="tel:0352252614" class="phone-btn">
 <span class="phone-number">(035) 225 2614</span>
+<span class="call-icon">📞</span>
+</a>
+<a href="tel:0352259286" class="phone-btn">
+<span class="phone-number">(035) 225-9286</span>
+<span class="call-icon">📞</span>
+</a>
+<a href="tel:0352264149" class="phone-btn">
+<span class="phone-number">(035) 226 4149</span>
 <span class="call-icon">📞</span>
 </a>
 <a href="tel:63352250950" class="phone-btn">
@@ -467,6 +354,10 @@ padding: 10px 14px;
 <div class="card-title">Negros Polymedic Hospital</div>
 </div>
 <div class="phone-list">
+<a href="tel:0354192112" class="phone-btn">
+<span class="phone-number">(035) 419 2112</span>
+<span class="call-icon">📞</span>
+</a>
 <a href="tel:09088140431" class="phone-btn">
 <span class="phone-number">0908 814 0431 (Emergency)</span>
 <span class="call-icon">📞</span>
@@ -475,8 +366,8 @@ padding: 10px 14px;
 <span class="phone-number">0908 814 0435</span>
 <span class="call-icon">📞</span>
 </a>
-<a href="tel:0354192112" class="phone-btn">
-<span class="phone-number">(035) 419 2112</span>
+<a href="tel:09984864176" class="phone-btn">
+<span class="phone-number">0998 486 4176</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
@@ -507,392 +398,73 @@ padding: 10px 14px;
 </div>
 </div>
 
-<div class="section-label">🏘️ Barangay Halls — Central &amp; Key Districts</div>
+<div class="section-label">Government &amp; Consular</div>
 
-<!-- Banilad -->
+<!-- Department of Foreign Affairs -->
 <div class="emergency-card">
 <div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Banilad</div>
-</div>
-<div class="note">
-No direct line published — contact via <strong>CDRRMO</strong> or <strong>PNP</strong> above (nearest response unit for this district).
-</div>
-</div>
-
-<!-- Batinguel -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Batinguel</div>
+<div class="icon">🛂</div>
+<div class="card-title">Department of Foreign Affairs</div>
 </div>
 <div class="phone-list">
-<a href="tel:09262125572" class="phone-btn">
-<span class="phone-number">0926 212 5572</span>
+<a href="tel:0355320024" class="phone-btn">
+<span class="phone-number">(035) 532 0024</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
-<div class="note" style="margin-top: 10px;">
-📍 Barangay Administration
-</div>
 </div>
 
-<!-- Daro -->
+<!-- Bureau of Immigration -->
 <div class="emergency-card">
 <div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Daro</div>
+<div class="icon">🛂</div>
+<div class="card-title">Bureau of Immigration</div>
 </div>
 <div class="phone-list">
-<a href="tel:0352267547" class="phone-btn">
-<span class="phone-number">(035) 226-7547</span>
+<a href="tel:0352254401" class="phone-btn">
+<span class="phone-number">(035) 225 4401</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
-<div class="note" style="margin-top: 10px;">
-📍 Barangay Hall (Narra)
-</div>
 </div>
 
-<!-- Talay -->
+<!-- Philippine Retirement Authority -->
 <div class="emergency-card">
 <div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Talay</div>
+<div class="icon">🛂</div>
+<div class="card-title">Philippine Retirement Authority</div>
 </div>
 <div class="phone-list">
-<a href="tel:09754966788" class="phone-btn">
-<span class="phone-number">0975 496 6788</span>
+<a href="tel:0322342722" class="phone-btn">
+<span class="phone-number">(032) 234 2722</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
-<div class="note" style="margin-top: 10px;">
-📍 Barangay Administration
-</div>
 </div>
 
-<!-- Poblacion 2 -->
+<!-- Provincial Tourism -->
 <div class="emergency-card">
 <div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Poblacion 2 (Luke Wright)</div>
+<div class="icon">🗺️</div>
+<div class="card-title">Provincial Tourism</div>
 </div>
 <div class="phone-list">
-<a href="tel:0354209675" class="phone-btn">
-<span class="phone-number">(035) 420-9675</span>
-<span class="call-icon">📞</span>
-</a>
-<a href="tel:09361886052" class="phone-btn">
-<span class="phone-number">0936 188 6052</span>
+<a href="tel:0352251825" class="phone-btn">
+<span class="phone-number">(035) 225 1825</span>
 <span class="call-icon">📞</span>
 </a>
 </div>
-<div class="note" style="margin-top: 10px;">
-📍 Upper Luke Wright area
-</div>
-</div>
-
-<!-- Poblacion 3 -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Poblacion 3 (Colon Ext.)</div>
-</div>
-<div class="phone-list">
-<a href="tel:0354210451" class="phone-btn">
-<span class="phone-number">(035) 421-0451</span>
-<span class="call-icon">📞</span>
-</a>
-<a href="tel:09177030035" class="phone-btn">
-<span class="phone-number">0917 703 0035</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Near Quezon Park
-</div>
-</div>
-
-<!-- Poblacion 5 -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Poblacion 5 (Silliman Area)</div>
-</div>
-<div class="phone-list">
-<a href="tel:09185515001" class="phone-btn">
-<span class="phone-number">0918 551 5001 (Capt. Nelson Ablir)</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Silliman University area
-</div>
-</div>
-
-<div class="section-label">🏘️ Barangay Halls — Additional Districts</div>
-
-<!-- Bagacay -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Bagacay</div>
-</div>
-<div class="phone-list">
-<a href="tel:0352267501" class="phone-btn">
-<span class="phone-number">(035) 226-7501</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Vincent Amigo Perigua
-</div>
-</div>
-
-<!-- Bajumpandan -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Bajumpandan</div>
-</div>
-<div class="phone-list">
-<a href="tel:09060253839" class="phone-btn">
-<span class="phone-number">0906 025 3839</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Orlando Baligasa Enquig • near NORSU Main Campus II
-</div>
-</div>
-
-<!-- Balugo -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Balugo</div>
-</div>
-<div class="phone-list">
-<a href="tel:09261776097" class="phone-btn">
-<span class="phone-number">0926 177 6097</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Purok Caimito • no landline on file, mobile only
-</div>
-</div>
-
-<!-- Bantayan -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Bantayan</div>
-</div>
-<div class="phone-list">
-<a href="tel:09353261839" class="phone-btn">
-<span class="phone-number">0935 326 1839 (Health Center / evac coordinator)</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-⚠️ From 2021 city evacuation-center list, not a hall line — verify before relying on it
-</div>
-</div>
-
-<!-- Bunao -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Bunao</div>
-</div>
-<div class="phone-list">
-<a href="tel:09559268258" class="phone-btn">
-<span class="phone-number">0955 926 8258</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Near Sibulan Airport • from 2021 city evacuation list, verify before relying on it
-</div>
-</div>
-
-<!-- Cadawinonan -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Cadawinonan</div>
-</div>
-<div class="phone-list">
-<a href="tel:09363175898" class="phone-btn">
-<span class="phone-number">0936 317 5898</span>
-<span class="call-icon">📞</span>
-</a>
-<a href="tel:09164803784" class="phone-btn">
-<span class="phone-number">0916 480 3784</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Jimmy Caro Tabada • numbers are the 2021 school/evac contact, not confirmed as the hall line
-</div>
-</div>
-
-<!-- Calindagan -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Calindagan</div>
-</div>
-<div class="phone-list">
-<a href="tel:0354227365" class="phone-btn">
-<span class="phone-number">(035) 422-7365</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Near Robinsons Place • older listing, recommend confirming
-</div>
-</div>
-
-<!-- Camanjac -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Camanjac</div>
-</div>
-<div class="phone-list">
-<a href="tel:0355236263" class="phone-btn">
-<span class="phone-number">(035) 523-6263</span>
-<span class="call-icon">📞</span>
-</a>
-<a href="tel:09350792683" class="phone-btn">
-<span class="phone-number">0935 079 2683</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Virginia Caluyo Alcancia • from 2021 city evacuation list, verify before relying on it
-</div>
-</div>
-
-<!-- Candau-ay -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Candau-ay</div>
-</div>
-<div class="phone-list">
-<a href="tel:09155018640" class="phone-btn">
-<span class="phone-number">0915 501 8640</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Largest barangay by land area • City Ecological Park
-</div>
-</div>
-
-<!-- Junob -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Junob</div>
-</div>
-<div class="phone-list">
-<a href="tel:09753422065" class="phone-btn">
-<span class="phone-number">0975 342 2065</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Isagani Umbac Bana
-</div>
-</div>
-
-<!-- Piapi -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Piapi</div>
-</div>
-<div class="phone-list">
-<a href="tel:0352263707" class="phone-btn">
-<span class="phone-number">(035) 226-3707</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Grace Ferrolino Osa • Sidlakan Negros Village area
-</div>
-</div>
-
-<!-- Pulantubig -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Pulantubig</div>
-</div>
-<div class="phone-list">
-<a href="tel:0354025292" class="phone-btn">
-<span class="phone-number">(035) 402-5292</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Ramil Quiso Cornelia
-</div>
-</div>
-
-<!-- Tabuctubig -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Tabuctubig</div>
-</div>
-<div class="phone-list">
-<a href="tel:09663588039" class="phone-btn">
-<span class="phone-number">0966 358 8039</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Randy Manaban Fausto • fastest-growing barangay 2020→2024
-</div>
-</div>
-
-<!-- Taclobo -->
-<div class="emergency-card">
-<div class="card-header">
-<div class="icon">🏘️</div>
-<div class="card-title">Taclobo</div>
-</div>
-<div class="phone-list">
-<a href="tel:0354025287" class="phone-btn">
-<span class="phone-number">(035) 402-5287</span>
-<span class="call-icon">📞</span>
-</a>
-</div>
-<div class="note" style="margin-top: 10px;">
-📍 Capt. Roger Estorco Bohol
-</div>
-</div>
-
-<div class="note" style="background: white; padding: 15px; border-radius: 10px; margin-top: 20px;">
-<strong>⚠️ No public direct line found for:</strong> Cantil-e, Looc, Mangnao-Canal, Motong, Poblacion No. 1 (Tinago), Poblacion No. 4 (Rizal Blvd.), Poblacion No. 6 (Cambagroy), Poblacion No. 7 (Mangga), Poblacion No. 8 (Cervantes Ext.).<br><br>
-For these, go through the City Hall trunk line <a href="tel:0352253775" style="color:#1e40af;">(035) 225-3775</a> and ask to be connected to the barangay, or use the PNP/CDRRMO numbers above.
 </div>
 
 <div class="note" style="background: white; padding: 15px; border-radius: 10px; margin-top: 20px;">
 <strong>📍 Location:</strong> Dumaguete City, Negros Oriental, Philippines<br>
-<strong>📅 Updated:</strong> August 2026 — hall numbers cross-checked against Barangay Directory (2026) and dumaguete.com; evacuation-list numbers are from a 2021 city government post and should be reconfirmed
+<strong>📅 Updated:</strong> September 2026
 </div>
 </div>
 
 <button class="share-btn" id="shareBtn" title="Share this app">🔗</button>
 
 <script>
-// Service Worker Registration
 if ('serviceWorker' in navigator) {
 navigator.serviceWorker.register('sw.js').then(function(registration) {
 console.log('Service Worker registered:', registration.scope);
@@ -901,7 +473,6 @@ console.log('Service Worker registration failed:', error);
 });
 }
 
-// Install Prompt
 let deferredPrompt;
 const installPrompt = document.getElementById('installPrompt');
 const installBtn = document.getElementById('installBtn');
@@ -922,7 +493,6 @@ installPrompt.classList.remove('show');
 }
 });
 
-// Share Button
 const shareBtn = document.getElementById('shareBtn');
 shareBtn.addEventListener('click', async () => {
 if (navigator.share) {

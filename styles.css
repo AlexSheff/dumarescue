@@ -1,0 +1,233 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+min-height: 100vh;
+padding: 20px;
+padding-bottom: 80px;
+}
+.container {
+max-width: 600px;
+margin: 0 auto;
+}
+header {
+background: white;
+border-radius: 20px;
+padding: 25px;
+margin-bottom: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+text-align: center;
+}
+h1 {
+color: #dc2626;
+font-size: 24px;
+margin-bottom: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+.subtitle {
+color: #666;
+font-size: 14px;
+}
+
+/* Emergency / Barangay switch */
+.view-switch {
+display: flex;
+gap: 8px;
+background: white;
+border-radius: 14px;
+padding: 6px;
+margin-bottom: 20px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+.view-btn {
+flex: 1;
+text-align: center;
+padding: 10px 12px;
+border-radius: 10px;
+text-decoration: none;
+font-weight: 600;
+font-size: 14px;
+color: #4b5563;
+transition: background 0.2s, color 0.2s;
+}
+.view-btn.active {
+background: #dc2626;
+color: white;
+}
+
+.section-label {
+color: white;
+font-size: 13px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin: 25px 0 10px 4px;
+opacity: 0.85;
+}
+
+.emergency-card {
+background: white;
+border-radius: 15px;
+padding: 20px;
+margin-bottom: 15px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+transition: transform 0.2s;
+}
+.emergency-card:active {
+transform: scale(0.98);
+}
+.card-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 15px;
+}
+.icon {
+font-size: 28px;
+width: 45px;
+height: 45px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #fee;
+border-radius: 12px;
+}
+.card-title {
+font-size: 18px;
+font-weight: 600;
+color: #1f2937;
+}
+.phone-list {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+.phone-btn {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 16px;
+background: #dc2626;
+color: white;
+text-decoration: none;
+border-radius: 10px;
+font-size: 16px;
+font-weight: 500;
+transition: background 0.2s;
+}
+.phone-btn:hover {
+background: #b91c1c;
+}
+.phone-btn:active {
+background: #991b1b;
+}
+.phone-btn.unverified {
+background: #f59e0b;
+}
+.phone-btn.unverified:hover {
+background: #d97706;
+}
+.phone-btn.unverified:active {
+background: #b45309;
+}
+.phone-number {
+font-family: 'Courier New', monospace;
+letter-spacing: 0.5px;
+}
+.call-icon {
+font-size: 20px;
+}
+.share-btn {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+background: #10b981;
+border: none;
+border-radius: 50%;
+color: white;
+font-size: 28px;
+box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+cursor: pointer;
+transition: transform 0.2s;
+z-index: 1000;
+}
+.share-btn:active {
+transform: scale(0.9);
+}
+.install-prompt {
+background: #fef3c7;
+border: 2px solid #fbbf24;
+border-radius: 15px;
+padding: 15px;
+margin-bottom: 20px;
+display: none;
+align-items: center;
+gap: 12px;
+}
+.install-prompt.show {
+display: flex;
+}
+.install-btn {
+background: #f59e0b;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 8px;
+font-weight: 600;
+cursor: pointer;
+white-space: nowrap;
+}
+.note {
+background: #eff6ff;
+border-left: 4px solid #3b82f6;
+padding: 12px;
+margin-top: 15px;
+border-radius: 8px;
+font-size: 13px;
+color: #1e40af;
+}
+.verify-note {
+background: #fffbeb;
+border-left: 4px solid #f59e0b;
+padding: 12px;
+margin-top: 15px;
+border-radius: 8px;
+font-size: 13px;
+color: #92400e;
+}
+.coverage-note {
+background: white;
+border-left: 4px solid #6b7280;
+padding: 15px;
+border-radius: 10px;
+margin-top: 10px;
+margin-bottom: 15px;
+font-size: 13px;
+color: #374151;
+line-height: 1.5;
+}
+@media (max-width: 480px) {
+body {
+padding: 15px;
+padding-bottom: 80px;
+}
+h1 {
+font-size: 20px;
+}
+.card-title {
+font-size: 16px;
+}
+.phone-btn {
+font-size: 14px;
+padding: 10px 14px;
+}
+}

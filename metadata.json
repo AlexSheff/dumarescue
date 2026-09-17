@@ -1,0 +1,6 @@
+{
+  "name": "Dumaguete Emergency Contacts",
+  "description": "Emergency contacts, Barangay Halls directory, and public services for Dumaguete City, Philippines",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
